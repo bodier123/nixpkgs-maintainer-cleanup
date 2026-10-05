@@ -1,0 +1,14 @@
+[package]
+name = "nixpkgs-maintainer-cleanup"
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+description = "Phase 1 syntax-aware Nixpkgs maintainer reference scanner"
+publish = false
+
+[dependencies]
+rnix = "=0.14.0"
+rowan = "=0.16.1"
+
+[lints.rust]
+unsafe_code = "forbid"

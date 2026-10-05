@@ -16,7 +16,7 @@ Given one Nix file and a handle, the prototype parses the file and reports direc
 **Out of scope**  
 Repository-wide scanning, identity lookup, and source rewriting are later issues.
 
-**Checkpoint status:** implementation drafted; local Rust build/test verification still required.
+**Checkpoint status:** implemented; `cargo test` passes (4/4) and the demo output matches the README.
 
 ---
 

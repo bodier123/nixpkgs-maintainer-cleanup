@@ -44,7 +44,7 @@ The design goal is therefore **safe automation, not maximum automation**.
 
 ## Running the Phase 1 prototype
 
-Prerequisites: Rust/Cargo and Git.
+Prerequisites: Rust/Cargo 1.77 or newer (required by the `rowan` dependency) and Git.
 
 ```bash
 cargo run -- alice sandbox/rnix-parse/example.nix
@@ -53,7 +53,7 @@ cargo run -- alice sandbox/rnix-parse/example.nix
 Expected style of output:
 
 ```text
-line 6: direct reference: lib.maintainers.alice
+line 7: direct reference: lib.maintainers.alice
 line 12: scoped reference: alice
 line 18: manual review: makeMaintainers alice
 ```
@@ -64,7 +64,12 @@ Run tests with:
 cargo test
 ```
 
-> Verification note: the project was assembled in an environment without a Rust toolchain, so the Rust build/tests still need to be run on the development machine before the checkpoint demo. That verification is deliberately left visible rather than claimed as completed.
+> Verified on 2026-10-05 with Rust 1.85.1: all 4 tests in `tests/scan.rs` pass, and the demo command above produces exactly the output shown.
+
+## Known limitations (Phase 1)
+
+- Manual-review matching is a plain substring check, so searching for `alice` also flags `lib.maintainers.malice`. These cases are only reported, never acted on.
+- Any attribute named `maintainers` is scanned, not only package `meta.maintainers`. Restricting this to real package metadata is planned as Issue #2.
 
 ## Semester roadmap
 
